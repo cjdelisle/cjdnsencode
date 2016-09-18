@@ -1,7 +1,7 @@
 {
     "name": "cjdnsencode",
     "description": "parse and serialize the encoding scheme representation in cjdns",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "license": "GPL-3.0+",
     "dependencies": {
         "buffershift": "~0.0.1"
