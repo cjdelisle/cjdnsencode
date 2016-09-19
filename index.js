@@ -20,9 +20,9 @@ const decodeForm = (buf) => {
     }
     BufferShift.shr(buf, prefixLen);
     return {
-        prefixLen: prefixLen,
         bitCount: bitCount,
-        prefix: prefix.toString('hex')
+        prefix: prefix.toString('hex'),
+        prefixLen: prefixLen
     };
 };
 

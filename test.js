@@ -4,28 +4,28 @@ const Cjdnsencode = require('./index');
 const SCHEMES = [
     {
         name: "SCHEME_F4",
-        obj: [ { prefixLen: 0, bitCount: 4, prefix: "" } ],
+        obj: [ { bitCount: 4, prefix: "", prefixLen: 0 } ],
         hex: '8000'
     },
     {
         name: "SCHEME_F8",
-        obj: [ { prefixLen: 0, bitCount: 8, prefix: "" } ],
+        obj: [ { bitCount: 8, prefix: "", prefixLen: 0 } ],
         hex: '0001'
     },
     {
         name: "SCHEME_v48",
         obj: [
-            { prefixLen: 1, bitCount: 4, prefix: "01" },
-            { prefixLen: 1, bitCount: 8, prefix: "00" },
+            { bitCount: 4, prefix: "01", prefixLen: 1 },
+            { bitCount: 8, prefix: "00", prefixLen: 1 },
         ],
         hex: '810c08'
     },
     {
         name: "SCHEME_v358",
         obj: [
-            { prefixLen: 1, bitCount: 3, prefix: "01" },
-            { prefixLen: 2, bitCount: 5, prefix: "02" },
-            { prefixLen: 2, bitCount: 8, prefix: "00" }
+            { bitCount: 3, prefix: "01", prefixLen: 1 },
+            { bitCount: 5, prefix: "02", prefixLen: 2 },
+            { bitCount: 8, prefix: "00", prefixLen: 2 }
         ],
         hex: '6114458100'
     }
