@@ -1,5 +1,15 @@
+/*@flow*/
 "use strict";
 const BufferShift = require("buffershift");
+
+/*::
+export type Cjdnsencode_Form = {
+    prefixLen: number,
+    prefix: string,
+    bitCount: number
+};
+export type Cjdnsencode_Scheme = Cjdnsencode_Form[];
+*/
 
 const MAX5 = (1 << 5) - 1;
 
@@ -34,7 +44,7 @@ const getReversed = (input) => {
     return bytes;
 };
 
-const parse = module.exports.parse = (input) => {
+const parse = module.exports.parse = (input /*:Buffer*/) => {
     const bytes = getReversed(input);
     const out = [];
     for (;;) {
@@ -52,7 +62,7 @@ const parse = module.exports.parse = (input) => {
 const encodeForm = (buf, form) => {
     BufferShift.shl(buf, form.prefixLen);
     for (let i = 1; i <= form.prefix.length; i++) {
-        buf[buf.length - i] ^= form.prefix[form.prefix.length - i];
+        buf[buf.length - i] ^= Number('0x' + form.prefix[form.prefix.length - i]);
     }
     BufferShift.shl(buf, 5);
     buf[buf.length - 1] ^= form.bitCount;
@@ -60,7 +70,7 @@ const encodeForm = (buf, form) => {
     buf[buf.length - 1] ^= form.prefixLen;
 };
 
-const serialize = module.exports.serialize = (scheme) => {
+const serialize = module.exports.serialize = (scheme /*:Cjdnsencode_Scheme*/) => {
     let bitsNeeded = 0;
     scheme.forEach((form) => { bitsNeeded += form.prefixLen + 5 + 5; });
     const buf = new Buffer((bitsNeeded >> 3) + (!!(bitsNeeded & 7))).fill(0);
@@ -68,11 +78,11 @@ const serialize = module.exports.serialize = (scheme) => {
     return getReversed(buf);
 };
 
-const formSize = module.exports.formSize = (form) => {
+const formSize = module.exports.formSize = (form /*:Cjdnsencode_Form*/) => {
     return form.bitCount + form.prefixLen;
 };
 
-const isSane = module.exports.isSane = (scheme) => {
+const isSane = module.exports.isSane = (scheme /*:Cjdnsencode_Scheme*/) => {
     // Check for obviously insane encoding.
     if (scheme.length === 0) {
         // No encoding schemes

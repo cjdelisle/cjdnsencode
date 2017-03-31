@@ -1,16 +1,20 @@
 {
-    "name": "cjdnsencode",
-    "description": "parse and serialize the encoding scheme representation in cjdns",
-    "version": "0.0.2",
-    "license": "GPL-3.0+",
-    "dependencies": {
-        "buffershift": "~0.0.1"
-    },
-    "devDependencies": {
-        "jshint": "~2.9.1"
-    },
-    "scripts": {
-        "lint": "jshint --verbose --config .jshintrc --exclude-path .jshintignore .",
-        "test": "node test"
-    }
+  "name": "cjdnsencode",
+  "description": "parse and serialize the encoding scheme representation in cjdns",
+  "version": "0.0.3",
+  "license": "GPL-3.0+",
+  "repository": "https://github.com/cjdelisle/cjdnsencode.git",
+  "dependencies": {
+    "buffershift": "0.0.2",
+    "jshint": "^2.9.4"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.42.0",
+    "jshint": "~2.9.1"
+  },
+  "scripts": {
+    "lint": "jshint --verbose --config .jshintrc --exclude-path .jshintignore .",
+    "test": "node test",
+    "flow": "./node_modules/.bin/flow"
+  }
 }
